@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">adb Wi-Fi</string>
+    <string name="top_text">ADB Wi-Fi Connection</string>
+    <string name="button_wifi_on">&#xe600;\no\tn</string>
+    <string name="button_wifi_off">&#xe601;\noff</string>
+    <string name="footer_text_1">运行状态</string>
+    <string name="footer_text_2" />
+    <string name="footer_text_3">....</string>
+    <string name="no_root">无法正常启动此应用,需要Root权限...</string>
+    <string name="button_close">Close</string>
+    <string name="no_root_title">未开启Root</string>
+    <string name="pref_wifi_on_key">key_wifi_on</string>
+    <string name="turning_on_wifi">开启Wi-Fi</string>
+    <string name="turning_off_wifi">关闭Wi-Fi</string>
+    <string name="pref_haptic_key">key_haptic</string>
+</resources>

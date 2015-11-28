@@ -1,0 +1,155 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 77168 bytes for Chunk::new
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (allocation.cpp:323), pid=19308, tid=10360
+#
+# JRE version:  (7.0_80-b15) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.80-b11 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000000000295d800):  JavaThread "main" [_thread_in_native, id=10360, stack(0x0000000002810000,0x0000000002910000)]
+
+Stack: [0x0000000002810000,0x0000000002910000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  java.lang.Class.forName0(Ljava/lang/String;ZLjava/lang/ClassLoader;Ljava/lang/Class;)Ljava/lang/Class;+0
+j  java.lang.Class.forName(Ljava/lang/String;ZLjava/lang/ClassLoader;)Ljava/lang/Class;+43
+j  sun.nio.cs.AbstractCharsetProvider.lookup(Ljava/lang/String;)Ljava/nio/charset/Charset;+86
+j  sun.nio.cs.AbstractCharsetProvider.charsetForName(Ljava/lang/String;)Ljava/nio/charset/Charset;+14
+j  java.nio.charset.Charset.lookupExtendedCharset(Ljava/lang/String;)Ljava/nio/charset/Charset;+10
+j  java.nio.charset.Charset.lookup2(Ljava/lang/String;)Ljava/nio/charset/Charset;+48
+j  java.nio.charset.Charset.lookup(Ljava/lang/String;)Ljava/nio/charset/Charset;+40
+j  java.nio.charset.Charset.isSupported(Ljava/lang/String;)Z+1
+v  ~StubRoutines::call_stub
+j  java.lang.System.initProperties(Ljava/util/Properties;)Ljava/util/Properties;+0
+j  java.lang.System.initializeSystemClass()V+13
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x0000000008d61800 JavaThread "Finalizer" daemon [_thread_blocked, id=18904, stack(0x000000000ac40000,0x000000000ad40000)]
+  0x0000000008d59800 JavaThread "Reference Handler" daemon [_thread_blocked, id=37200, stack(0x000000000ab40000,0x000000000ac40000)]
+=>0x000000000295d800 JavaThread "main" [_thread_in_native, id=10360, stack(0x0000000002810000,0x0000000002910000)]
+
+Other Threads:
+  0x0000000008d56000 VMThread [stack: 0x000000000aa40000,0x000000000ab40000] [id=8324]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 38400K, used 1331K [0x00000000eaa80000, 0x00000000ed500000, 0x0000000100000000)
+  eden space 33280K, 4% used [0x00000000eaa80000,0x00000000eabccdb8,0x00000000ecb00000)
+  from space 5120K, 0% used [0x00000000ed000000,0x00000000ed000000,0x00000000ed500000)
+  to   space 5120K, 0% used [0x00000000ecb00000,0x00000000ecb00000,0x00000000ed000000)
+ ParOldGen       total 86528K, used 0K [0x00000000c0000000, 0x00000000c5480000, 0x00000000eaa80000)
+  object space 86528K, 0% used [0x00000000c0000000,0x00000000c0000000,0x00000000c5480000)
+ PSPermGen       total 21504K, used 1300K [0x00000000bae00000, 0x00000000bc300000, 0x00000000c0000000)
+  object space 21504K, 6% used [0x00000000bae00000,0x00000000baf450e0,0x00000000bc300000)
+
+Card table byte_map: [0x0000000005b20000,0x0000000005d50000] byte_map_base: 0x0000000005549000
+
+Polling page: 0x0000000000950000
+
+Code Cache  [0x0000000002a60000, 0x0000000002cd0000, 0x0000000005a60000)
+ total_blobs=113 nmethods=0 adapters=89 free_code_cache=48799Kb largest_free_block=49970176
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (1 events):
+Event: 0.032 Thread 0x000000000295d800 Threw 0x00000000eaa8f668 at C:\re\jdk7u80\2329\hotspot\src\share\vm\prims\jni.cpp:3991
+
+Events (10 events):
+Event: 0.035 loading class 0x00000000029eddc0
+Event: 0.035 loading class 0x00000000029d9a10
+Event: 0.035 loading class 0x00000000029d9a10 done
+Event: 0.035 loading class 0x00000000029eddc0 done
+Event: 0.036 loading class 0x00000000029ed3f0 done
+Event: 0.036 loading class 0x00000000029ed410
+Event: 0.036 loading class 0x00000000029ed410 done
+Event: 0.036 loading class 0x00000000029edeb0
+Event: 0.036 loading class 0x00000000029edeb0 done
+Event: 0.049 loading class 0x0000000008d66730
+
+
+Dynamic libraries:
+0x00007ff785f20000 - 0x00007ff785f53000 	C:\Program Files\Java\jdk1.7.0_80\bin\java.exe
+0x00007ffa61d80000 - 0x00007ffa61f41000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ffa5f4e0000 - 0x00007ffa5f58d000 	C:\Windows\system32\KERNEL32.DLL
+0x00007ffa5ec90000 - 0x00007ffa5ee6d000 	C:\Windows\system32\KERNELBASE.dll
+0x00007ffa5f290000 - 0x00007ffa5f336000 	C:\Windows\system32\ADVAPI32.dll
+0x00007ffa5f440000 - 0x00007ffa5f4dd000 	C:\Windows\system32\msvcrt.dll
+0x00007ffa61d20000 - 0x00007ffa61d7b000 	C:\Windows\system32\sechost.dll
+0x00007ffa61440000 - 0x00007ffa61566000 	C:\Windows\system32\RPCRT4.dll
+0x00007ffa61a80000 - 0x00007ffa61bce000 	C:\Windows\system32\USER32.dll
+0x00007ffa61640000 - 0x00007ffa617c6000 	C:\Windows\system32\GDI32.dll
+0x00007ffa5b0c0000 - 0x00007ffa5b334000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.10240.16384_none_f41f7b285750ef43\COMCTL32.dll
+0x00007ffa5fd00000 - 0x00007ffa5fd36000 	C:\Windows\system32\IMM32.DLL
+0x00007ffa5fad0000 - 0x00007ffa5fc2c000 	C:\Windows\system32\MSCTF.dll
+0x0000000075450000 - 0x0000000075522000 	C:\Program Files\Java\jdk1.7.0_80\jre\bin\msvcr100.dll
+0x0000000074620000 - 0x0000000074df9000 	C:\Program Files\Java\jdk1.7.0_80\jre\bin\server\jvm.dll
+0x00007ffa5ee70000 - 0x00007ffa5ee93000 	C:\Windows\system32\WINMM.dll
+0x00007ffa5e580000 - 0x00007ffa5e5ac000 	C:\Windows\system32\WINMMBASE.dll
+0x00007ffa5f240000 - 0x00007ffa5f284000 	C:\Windows\system32\cfgmgr32.dll
+0x00007ffa5e550000 - 0x00007ffa5e577000 	C:\Windows\system32\DEVOBJ.dll
+0x00007ffa61580000 - 0x00007ffa61588000 	C:\Windows\system32\PSAPI.DLL
+0x00007ffa5cb90000 - 0x00007ffa5cb99000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x00007ffa5f890000 - 0x00007ffa5f8f9000 	C:\Windows\system32\WS2_32.dll
+0x00007ffa618d0000 - 0x00007ffa618d8000 	C:\Windows\system32\NSI.dll
+0x0000000075ac0000 - 0x0000000075acf000 	C:\Program Files\Java\jdk1.7.0_80\jre\bin\verify.dll
+0x0000000075a90000 - 0x0000000075ab8000 	C:\Program Files\Java\jdk1.7.0_80\jre\bin\java.dll
+0x0000000075a70000 - 0x0000000075a86000 	C:\Program Files\Java\jdk1.7.0_80\jre\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Djava.awt.headless=true -Xmx1024M -Dfile.encoding=GBK -Duser.country=CN -Duser.language=zh -Duser.variant 
+java_command: com.android.dx.command.Main --dex --num-threads=4 --output D:\AndroidStudioProjects\ADBWIFI\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.1.1_3e37fb17e76797a42dccec752cb6a095d31ef832.jar D:\AndroidStudioProjects\ADBWIFI\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Skype\Phone\;D:\Android\sdk;D:\Android\sdk\platform-tools;D:\Android\android-ndk-r9b;C:\Program Files\Git\cmd;D:\Program Files\cmder;D:\Android\sdk
+USERNAME=Administrator
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 8.1 , 64 bit Build 9600 
+
+CPU:total 8 (4 cores per cpu, 2 threads per core) family 6 model 60 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, erms, ht, tsc, tscinvbit
+
+Memory: 4k page, physical 8331820k(1619900k free), swap 16123688k(3408k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (24.80-b11) for windows-amd64 JRE (1.7.0_80-b15), built on Apr 10 2015 11:26:34 by "java_re" with unknown MS VC++:1600
+
+time: Sat Nov 28 08:00:00 2015
+elapsed time: 0 seconds
+
