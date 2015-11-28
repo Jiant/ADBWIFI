@@ -20,6 +20,8 @@ public class ShellUtil {
         return execCommand("echo root", true, false).result == 0;
     }
 
+
+
     public static CommandResult execCommand(String command, boolean isRoot) {
         return execCommand(new String[] {command}, isRoot, true);
     }
@@ -31,6 +33,56 @@ public class ShellUtil {
     public static CommandResult execCommand(List<String> commands, boolean isRoot, boolean isNeedResultMsg) {
         return execCommand(commands == null ? null : commands.toArray(new String[]{}), isRoot, isNeedResultMsg);
     }
+
+
+    public static boolean execRootCommand(String command, boolean isRoot){
+      return  execRootCommand(new String[] {command},isRoot);
+    }
+
+    public static boolean execRootCommand(String[] commands, boolean isRoot){
+        if (commands == null || commands.length == 0) {
+            return false;
+        }
+
+        Process process = null;
+        DataOutputStream os = null;
+        try {
+            process = Runtime.getRuntime().exec(isRoot ? COMMAND_SU : COMMAND_SH);
+            os = new DataOutputStream(process.getOutputStream());
+            for (String command : commands) {
+                if (command == null) {
+                    continue;
+                }
+                // donnot use os.writeBytes(commmand), avoid chinese charset error
+                os.write(command.getBytes());
+                os.writeBytes(COMMAND_LINE_END);
+                os.flush();
+            }
+            os.writeBytes(COMMAND_EXIT);
+            os.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (os != null) {
+                    os.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (process != null) {
+                    process.destroy();
+                }
+            }
+
+        }
+
+        return true;
+    }
+
 
     /**
      * execute shell commands
@@ -127,6 +179,10 @@ public class ShellUtil {
             this.errorMsg = errorMsg;
         }
     }
+
+
+
+
 
     public static final String COMMAND_SU       = "su";
     public static final String COMMAND_SH       = "sh";

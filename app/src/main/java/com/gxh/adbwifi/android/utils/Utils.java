@@ -11,6 +11,7 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import com.gxh.adbwifi.R;
+import com.gxh.adbwifi.android.activities.AdbWiFiActivity;
 
 /**
  * @author GuanXinHua
@@ -50,6 +51,25 @@ public class Utils {
 
         }
     }
+
+    public static boolean adbStart(Context paramContext){
+
+        if(!AdbWiFiActivity.USB_DEBUG){
+
+        }
+        return false;
+    }
+
+
+    public static boolean setProp(String property, String value){
+        return ShellUtil.execRootCommand("setprop " + property + " "+ value,false);
+    }
+
+
+
+
+
+
 
     public static boolean prefsHaptic(Context paramContext){
         return PreferenceManager.getDefaultSharedPreferences(paramContext).getBoolean(paramContext.getResources().getString(R.string.pref_haptic_key),true);

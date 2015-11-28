@@ -15,8 +15,8 @@ tools:context=".android.activities.AdbWiFiActivity">
     android:layout_height="wrap_content"
     android:id="@+id/tv_top_text"
     android:text="@string/top_text"
-    android:paddingTop="25sp"
-    android:paddingBottom="40sp"
+    android:paddingTop="25dp"
+    android:paddingBottom="40dp"
     android:layout_centerHorizontal="true"
     />
 
@@ -24,11 +24,14 @@ tools:context=".android.activities.AdbWiFiActivity">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/iv_button"
-        android:text="@string/button_wifi_on"
-        android:textSize="100sp"
+        android:text="@string/button_wifi_off"
+        android:textSize="110dp"
 
         android:layout_below="@+id/tv_top_text"
-        android:layout_centerHorizontal="true" />
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,8 +48,8 @@ tools:context=".android.activities.AdbWiFiActivity">
         android:layout_height="wrap_content"
         android:id="@+id/tv_footer2"
         android:layout_below="@id/tv_footer1"
-        android:paddingTop="10sp"
-        android:paddingBottom="10sp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:layout_centerHorizontal="true"
         android:text="@string/footer_text_2"
         />

@@ -25,6 +25,7 @@ public class AdbWiFiActivity extends BaseActivity {
 
     public static boolean wifiState;
     public static boolean mState = false;
+    public static final boolean USB_DEBUG = false;
 
     @ViewInject(R.id.iv_button)
     private IconFontView tv_button;

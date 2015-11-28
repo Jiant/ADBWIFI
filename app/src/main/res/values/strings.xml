@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">adb Wi-Fi</string>
     <string name="top_text">ADB Wi-Fi Connection</string>
-    <string name="button_wifi_on">&#xe600;\no\tn</string>
-    <string name="button_wifi_off">&#xe601;\noff</string>
+    <string name="button_wifi_on">&#xe600;</string>
+    <string name="button_wifi_off">&#xe601;</string>
     <string name="footer_text_1">运行状态</string>
     <string name="footer_text_2" />
     <string name="footer_text_3">....</string>
