@@ -22,7 +22,7 @@ import org.xutils.view.annotation.ViewInject;
 
 @ContentView(R.layout.activity_adb_wi_fi)
 public class AdbWiFiActivity extends BaseActivity {
-
+    public static final String PORT = "5555";
     public static boolean wifiState;
     public static boolean mState = false;
     public static final boolean USB_DEBUG = false;

@@ -55,6 +55,8 @@ public class Utils {
     public static boolean adbStart(Context paramContext){
 
         if(!AdbWiFiActivity.USB_DEBUG){
+            //serive.adb.top.prot:5555
+            setProp("serive.adb.top.prot",AdbWiFiActivity.PORT);
 
         }
         return false;
@@ -64,6 +66,7 @@ public class Utils {
     public static boolean setProp(String property, String value){
         return ShellUtil.execRootCommand("setprop " + property + " "+ value,false);
     }
+
 
 
 
