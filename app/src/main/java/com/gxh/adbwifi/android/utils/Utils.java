@@ -4,6 +4,8 @@ package com.gxh.adbwifi.android.utils;/**
 
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.wifi.WifiManager;
@@ -57,10 +59,27 @@ public class Utils {
         if(!AdbWiFiActivity.USB_DEBUG){
             //serive.adb.top.prot:5555
             setProp("serive.adb.top.prot",AdbWiFiActivity.PORT);
-
+            if(ShellUtil.execRootCommand("adbd",false)){
+                ShellUtil.execCommand("stop adbd",false);
+            }
+            ShellUtil.execRootCommand("start adbd",false);
 
         }
-        return false;
+        try
+        {
+            AdbWiFiActivity.mState = true;
+        }
+        catch (Exception e)
+        {}
+
+        SharedPreferences settings = paramContext.getSharedPreferences("wireless", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("mState", true);
+        editor.commit();
+
+
+
+        return true;
     }
 
 

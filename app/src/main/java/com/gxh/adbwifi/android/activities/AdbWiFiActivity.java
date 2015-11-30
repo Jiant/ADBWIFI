@@ -8,6 +8,7 @@ import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class AdbWiFiActivity extends BaseActivity {
     public static boolean wifiState;
     public static boolean mState = false;
     public static final boolean USB_DEBUG = false;
+
 
     @ViewInject(R.id.iv_button)
     private IconFontView tv_button;
