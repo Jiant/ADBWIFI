@@ -58,6 +58,7 @@ public class Utils {
             //serive.adb.top.prot:5555
             setProp("serive.adb.top.prot",AdbWiFiActivity.PORT);
 
+
         }
         return false;
     }

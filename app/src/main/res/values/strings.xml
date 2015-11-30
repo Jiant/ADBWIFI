@@ -3,7 +3,7 @@
     <string name="top_text">ADB Wi-Fi Connection</string>
     <string name="button_wifi_on">&#xe600;</string>
     <string name="button_wifi_off">&#xe601;</string>
-    <string name="footer_text_1">运行状态: 未启动</string>
+    <string name="footer_text_1">运行状态:  未启动</string>
     <string name="footer_text_2" />
     <string name="footer_text_3">....</string>
     <string name="no_root">无法正常启动此应用,需要Root权限...</string>
