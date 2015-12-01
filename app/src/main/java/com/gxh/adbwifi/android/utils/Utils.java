@@ -7,13 +7,16 @@ import android.app.ProgressDialog;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import com.gxh.adbwifi.R;
 import com.gxh.adbwifi.android.activities.AdbWiFiActivity;
+import com.gxh.adbwifi.android.data.DataKeeper;
 
 /**
  * @author GuanXinHua
@@ -29,9 +32,13 @@ public class Utils {
     public static NotificationManager mNotificationManager;  //状态栏通知的管理类，负责发通知、清楚通知等
 
     public static void saveWiFiState(Context paramContext, boolean paramBoolean){
-        SharedPreferences.Editor localEditer = paramContext.getSharedPreferences("WiFi",0).edit();
-        localEditer.putBoolean("wifiState",paramBoolean);
-        localEditer.commit();
+//        SharedPreferences.Editor localEditer = paramContext.getSharedPreferences("WiFi",0).edit();
+//        localEditer.putBoolean("wifiState",paramBoolean);
+//        localEditer.commit();
+        DataKeeper dk = new DataKeeper(paramContext,"WiFI");
+        dk.put("wifiState",paramBoolean);
+
+
     }
 
 
@@ -43,15 +50,15 @@ public class Utils {
 
     public static void enableWiFi(Context paramContext, boolean paramBoolean){
         if(paramBoolean){
-            Toast.makeText(paramContext, R.string.turning_on_wifi, Toast.LENGTH_LONG).show();
-            while (true){
-                ((WifiManager) paramContext.getSystemService(Context.WIFI_SERVICE)).setWifiEnabled(paramBoolean);
-                Toast.makeText(paramContext,R.string.turning_off_wifi, Toast.LENGTH_LONG).show();
-
-                return;
-            }
-
+            Toast.makeText(paramContext,R.string.turning_on_wifi, Toast.LENGTH_LONG).show();
         }
+        else
+        {
+            Toast.makeText(paramContext,R.string.turning_off_wifi, Toast.LENGTH_LONG).show();
+        }
+
+        WifiManager mWiFiManager = (WifiManager) paramContext.getSystemService(Context.WIFI_SERVICE);
+        mWiFiManager.setWifiEnabled(paramBoolean);
     }
 
     public static boolean adbStart(Context paramContext){
@@ -90,8 +97,27 @@ public class Utils {
 
 
 
+    public static void WiFiDialog(Context context){
+        DialogUtil.showTips(context,"",R.string.no_wifi,R.string.button_close,R.string.button_close, new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                System.exit(0);
+            }
+        }).show();
+    }
 
 
+
+    public static boolean checkWiFiState(Context context){
+        WifiManager mWiFiManager = (WifiManager) context.getSystemService(context.WIFI_SERVICE);
+        WifiInfo wifiInfo = mWiFiManager.getConnectionInfo();
+        if(!mWiFiManager.isWifiEnabled()||wifiInfo.getSSID() ==null){
+            return false;
+        }
+
+
+        return true;
+    }
 
 
     public static boolean prefsHaptic(Context paramContext){

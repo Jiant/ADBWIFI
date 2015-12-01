@@ -53,7 +53,7 @@ public class DialogUtil {
         return showTips(context, title, des, null, null);
     }
 
-    public static Dialog showTips(Context context, int title, int des) {
+    public static Dialog showTips(Context context, String s, int no_wifi, int title, int des, DialogInterface.OnDismissListener onDismissListener) {
         return showTips(context, context.getString(title), context.getString(des));
     }
 

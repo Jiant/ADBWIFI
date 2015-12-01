@@ -4,6 +4,8 @@ import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
@@ -58,39 +60,47 @@ public class AdbWiFiActivity extends BaseActivity {
                 }
             });
         }
-        if (!Network.isWifiConnected(this)){
+        if (!Utils.checkWiFiState(AdbWiFiActivity.this)){
+            Toast.makeText(this,"wifi not", Toast.LENGTH_LONG).show();
+//            wifiState = false;
+//            Utils.saveWiFiState(this,wifiState);
+//
+//            if(Utils.prefsWiFiOn(this)){
+//
+//                Utils.enableWiFi(this,true);
+//
+//            }else{
 
-            wifiState = false;
-            Utils.saveWiFiState(this,wifiState);
 
-            if(Utils.prefsWiFiOn(this)){
-
-
-                Utils.enableWiFi(this,true);
-            }
-
-            while(true){
-                tv_button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Vibrator localVibrator = (Vibrator) AdbWiFiActivity.this.getSystemService(VIBRATOR_SERVICE);
-                        if(Utils.prefsHaptic(AdbWiFiActivity.this)){
-                            localVibrator.vibrate(45L);
-                        }
-                        if(AdbWiFiActivity.mState){
-                            ShellUtil.execCommand("adb kill-server",false);
-                           while (true)
-                            {
-                                AdbWiFiActivity.this.updateState();
-                                return;
-//                                Utils.adbStop(AdbWiFiActivity.this);
-                            }
-                        }
-                    }
-                });
-            }
+            }else{
+            Toast.makeText(this,"wifi ok", Toast.LENGTH_LONG).show();
         }
-    }
+
+
+//            while(true){
+//                tv_button.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Vibrator localVibrator = (Vibrator) AdbWiFiActivity.this.getSystemService(VIBRATOR_SERVICE);
+//                        if(Utils.prefsHaptic(AdbWiFiActivity.this)){
+//                            localVibrator.vibrate(45L);
+//                        }
+//                        if(AdbWiFiActivity.mState){
+//                            ShellUtil.execCommand("adb kill-server",false);
+//                           while (true)
+//                            {
+//                                AdbWiFiActivity.this.updateState();
+//                                return;
+////                                Utils.adbStop(AdbWiFiActivity.this);
+//                            }
+//                        }
+//                    }
+//                });
+//            }
+        }
+
+
+//    }
 
 
     private void updateState(){
@@ -112,6 +122,9 @@ public class AdbWiFiActivity extends BaseActivity {
         this.tv_footer3.setVisibility(View.INVISIBLE);
         this.tv_button.setText(R.string.button_wifi_off);
     }
+
+
+
 
 
     @Override
