@@ -23,6 +23,8 @@ import com.gxh.adbwifi.android.views.IconFontView;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 @ContentView(R.layout.activity_adb_wi_fi)
 public class AdbWiFiActivity extends BaseActivity {
     public static final String PORT = "5555";
@@ -53,15 +55,36 @@ public class AdbWiFiActivity extends BaseActivity {
         }
         if(!ShellUtil.hasRootPermission()){
 
-            DialogUtil.showTips(this, R.string.no_root_title, R.string.no_root,R.string.button_close, new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-//                    AdbWiFiActivity.this.finish();
-                }
-            });
-        }
+            new SweetAlertDialog(AdbWiFiActivity.this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText(getString(R.string.no_root_title))
+                    .setContentText(getString(R.string.no_root))
+                    .setCancelText("继续使用")
+                    .setConfirmText(getString(R.string.button_close))
+                    .showCancelButton(true)
+                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.cancel();
+                        }
+                    })
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            AdbWiFiActivity.this.finish();
+                        }
+                    })
+                    .show();
+
+
+
+
+
         if (!Utils.checkWiFiState(AdbWiFiActivity.this)){
-            Toast.makeText(this,"wifi not", Toast.LENGTH_LONG).show();
+            wifiState = false;
+            Utils.saveWiFiState(AdbWiFiActivity.this,wifiState);
+            if (Utils.prefsWiFiOn(AdbWiFiActivity.this)){
+
+            }
 //            wifiState = false;
 //            Utils.saveWiFiState(this,wifiState);
 //
@@ -75,6 +98,9 @@ public class AdbWiFiActivity extends BaseActivity {
             }else{
             Toast.makeText(this,"wifi ok", Toast.LENGTH_LONG).show();
         }
+
+
+
 
 
 //            while(true){
@@ -100,7 +126,7 @@ public class AdbWiFiActivity extends BaseActivity {
         }
 
 
-//    }
+    }
 
 
     private void updateState(){
@@ -110,19 +136,19 @@ public class AdbWiFiActivity extends BaseActivity {
             tv_footer2.setText("adb connect " + Utils.getWifiIp(AdbWiFiActivity.this));
             tv_footer2.setVisibility(View.VISIBLE);
             tv_footer3.setVisibility(View.VISIBLE);
-            tv_button.setText(R.string.button_wifi_on);
+            tv_button.setText(R.string.button_wifi_off);
                 return;
             } catch (Exception e){
-                while (true)
+
                     tv_footer2.setText("adb connect ?");
             }
-        }
+        }else{
         this.tv_footer1.setText("最终改变");
         this.tv_footer2.setVisibility(View.INVISIBLE);
         this.tv_footer3.setVisibility(View.INVISIBLE);
-        this.tv_button.setText(R.string.button_wifi_off);
+        this.tv_button.setText(R.string.button_wifi_on);
     }
-
+    }
 
 
 
