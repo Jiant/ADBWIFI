@@ -83,16 +83,9 @@ public class AdbWiFiActivity extends BaseActivity {
             wifiState = false;
             Utils.saveWiFiState(AdbWiFiActivity.this,wifiState);
             if (Utils.prefsWiFiOn(AdbWiFiActivity.this)){
-
+                Utils.enableWiFi(AdbWiFiActivity.this,true);
             }
-//            wifiState = false;
-//            Utils.saveWiFiState(this,wifiState);
-//
-//            if(Utils.prefsWiFiOn(this)){
-//
-//                Utils.enableWiFi(this,true);
-//
-//            }else{
+
 
 
             }else{
